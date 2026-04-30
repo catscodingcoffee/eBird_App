@@ -1,10 +1,15 @@
+import json
 import os
+from pathlib import Path
+
 from ebird.api.requests import *
 from ebird.api.requests.validation import clean_lat, clean_lng
 
 from geopy.geocoders import Nominatim, GoogleV3
 
 from dotenv import load_dotenv
+
+_region_lookup = json.loads(Path("references/region_lookup.json").read_text())
 
 
 def get_api_key()->tuple[str,str]:
@@ -53,8 +58,11 @@ def get_area_info(coordinates: tuple[float,float])->dict:
 
     return info
 
-def create_ebird_region(info:dict)->str:
-    return f"{info["state"]}-{info["country"]}"
+def create_ebird_region(info: dict) -> str:
+    code = f"{info['country']}-{info['state']}"
+    if code not in _region_lookup["subnational1"]:
+        raise ValueError(f"'{code}' is not a recognized eBird subnational1 region code")
+    return code
 
 
 def get_user_location()->str:
