@@ -1,0 +1,11 @@
+[project]
+name = "ebird2"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.13"
+dependencies = [
+    "dotenv>=0.9.9",
+    "ebird-api>=4.0.0",
+    "geopy>=2.4.1",
+    "google-maps-addressvalidation>=0.6.0",
+]
