@@ -8,4 +8,6 @@ dependencies = [
     "ebird-api>=4.0.0",
     "geopy>=2.4.1",
     "google-maps-addressvalidation>=0.6.0",
+    "openpyxl>=3.1.5",
+    "xlrd>=2.0.2",
 ]
